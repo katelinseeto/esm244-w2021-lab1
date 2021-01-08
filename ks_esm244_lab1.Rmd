@@ -1,0 +1,18 @@
+---
+title: "ESM 244 Lab 1"
+author: "Katelin Seeto"
+date: "1/7/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# install packages
+library(tidyverse)
+library(here)
+library(tmap)
+#library(sf)
+#error installing sf package
+```
+
