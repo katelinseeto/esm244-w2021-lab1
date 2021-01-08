@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(here)
 library(tmap)
-#library(sf)
+library(sf)
 #error installing sf package
 ```
 
