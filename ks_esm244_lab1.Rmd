@@ -8,11 +8,38 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-# install packages
+
+# attach packages
 library(tidyverse)
 library(here)
 library(tmap)
 library(sf)
-#error installing sf package
+
+```
+
+### Read in SF trees data
+
+```{r}
+sf_trees <- read_csv(here("data", "sf_trees", "sf_trees.csv"))
+```
+
+### Basic wrangling reminders
+
+Refresh some skills for data wrangling and summary statistics using functions from the `dplyr` package. 
+
+Find the top 5 highest observations of trees by legal_status, do some wrangling, make a graph. 
+
+Notes on `count()`:  
+  *`dplyr` package with the job to find counts of observations based on one or more variables  
+  *replaces need for `group_by` and n function and `summarise()` since it puts it in a nice table
+   
+
+```{r}
+# Top 5 by legal_status
+top_5_status <- sf_trees %>%
+  count(legal_status)
+
+# Example count by legal_status and species
+# sf_trees %>% count(legal_status, species)
 ```
 
