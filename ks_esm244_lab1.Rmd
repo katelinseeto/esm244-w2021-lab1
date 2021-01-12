@@ -30,14 +30,29 @@ Refresh some skills for data wrangling and summary statistics using functions fr
 Find the top 5 highest observations of trees by legal_status, do some wrangling, make a graph. 
 
 Notes on `count()`:  
-  *`dplyr` package with the job to find counts of observations based on one or more variables  
-  *replaces need for `group_by` and n function and `summarise()` since it puts it in a nice table
+  * `dplyr` package with the job to find counts of observations based on one or more variables  
+  * replaces need for `group_by` and n function and `summarise()` since it puts it in a nice table
+  
+Notes on other functions:  
+  * `drop_na()` removes any rows that have na value for variable you specify  
+  * `rename()` renames variable in df, remember new name on left, old name on right!   
+    + rename(new = old)  
+  * `select()` main job is to keep or exclude columns, can also be used to reorder but can be a hassle if many columns  
+  * `relocate()` is better way to reorder columns, column name you put in will bring to first column  
+  * `slice_max()` allows you to identify the rows with the highest values for a specified variables and then keeps the number you want
+    
+  
    
 
 ```{r}
 # Top 5 by legal_status
 top_5_status <- sf_trees %>%
-  count(legal_status)
+  count(legal_status) %>% 
+  drop_na(legal_status) %>% 
+  rename(tree_count = n) %>% 
+  relocate(tree_count) %>% 
+  slice_max(tree_count, n = 5)
+  
 
 # Example count by legal_status and species
 # sf_trees %>% count(legal_status, species)
