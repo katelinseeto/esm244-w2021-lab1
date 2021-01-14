@@ -39,7 +39,7 @@ Notes on other functions:
     + rename(new = old)  
   * `select()` main job is to keep or exclude columns, can also be used to reorder but can be a hassle if many columns  
   * `relocate()` is better way to reorder columns, column name you put in will bring to first column  
-  * `slice_max()` allows you to identify the rows with the highest values for a specified variables and then keeps the number you want
+  * `slice_max()` allows you to identify the rows with the highest values for a specified variables and then keeps the number of rows you want
     
   
    
