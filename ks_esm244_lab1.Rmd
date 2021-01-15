@@ -74,3 +74,39 @@ ggplot(data= top_5_status, aes(x= fct_reorder(legal_status, tree_count), y= tree
   theme_minimal()
 ```
 
+### Few more data wrangling examples
+
+Only want to keep observations (aka rows) for Blackwood Acacia trees 
+
+Notes:  
+* If you want to look for everything in a column that contains a string of text, like Blackwood Acacia can use `filter(str_detect(variable, "string of text"))`  
+* Can use `ggplot` to map even though lat and long are just being viewed as numbers on an x,y coord system
+
+```{r}
+blackwood_acacia <- sf_trees %>% 
+  filter(str_detect(species, "Blackwood Acacia")) %>% 
+  select(legal_status, date, latitude, longitude)
+
+ggplot(data= blackwood_acacia, aes(x= longitude, y= latitude))+
+  geom_point()
+```
+
+### More wrangling examples: `tidyr:: separate()` and `unite()` functions  
+
+Useful for combining or separating columns 
+
+Notes:  
+* `separate()` is broken down into this structure separate(column you want to separate, into = what you want to name them which is done by creating a vector with c, sep= what is the separator in "")  
+* `unite()` is for combining columns, structure is ("name of new col you want to make', col's you want to unite, can use : to indicate from this col to this other col, sep= "what you want to separate them")
+
+```{r}
+# Example separate()
+sf_trees_sep <- sf_trees %>% 
+  separate(species, into = c("spp_scientific", "spp_common"), sep= "::")
+
+# Example unite()
+
+sf_trees_unite <- sf_trees %>% 
+  unite("id_status", tree_id: legal_status, sep= "_cool_")
+```
+
