@@ -42,7 +42,6 @@ Notes on other functions:
   * `slice_max()` allows you to identify the rows with the highest values for a specified variables and then keeps the number of rows you want
     
   
-   
 
 ```{r}
 # Top 5 by legal_status
@@ -56,5 +55,22 @@ top_5_status <- sf_trees %>%
 
 # Example count by legal_status and species
 # sf_trees %>% count(legal_status, species)
+```
+
+
+### Make a graph of top 5 observations by legal status 
+
+Notes on ggplot:  
+* Initial plotting shows all columns listed in alphabetical order
+* Can convert to factor and use forcats package to reorder variables  
+* We will reorder columns within `ggplot`, use `fct_reorder()` with (variable, variable to order by)
+
+```{r}
+ggplot(data= top_5_status, aes(x= fct_reorder(legal_status, tree_count), y= tree_count))+
+  geom_col()+
+  labs(x= "Legal Status",
+       y= "Tree Count")+
+  coord_flip()+
+  theme_minimal()
 ```
 
